@@ -1,43 +1,17 @@
 import { memo } from 'react';
 import { ROUTERS } from '../../../../utils/router';
-import { IoCart } from "react-icons/io5";
-import { AiOutlineProduct } from "react-icons/ai";
-import { MdDashboard, MdCategory } from "react-icons/md";
-import { Link, NavLink } from 'react-router-dom';
 import './HeaderAdmin.scss'
 import { userStateContext } from '../../../../contexts/ContextProvider';
 import axiosClient from '../../../../config/axios';
-import { CiUser } from "react-icons/ci";
+import { Button, Layout } from 'antd';
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+const { Header } = Layout;
 
-const HeaderAdmin = () => {
-  const navItems = [
-    {
-      label: 'Dashboard',
-      path: ROUTERS.ADMIN.DASHBOARD,
-      icon: <MdDashboard />,
-    },
-    {
-      label: 'Orders',
-      path: ROUTERS.ADMIN.ORDERS,
-      icon: <IoCart />,
-    },
-    {
-      label: 'Products',
-      path: ROUTERS.ADMIN.PRODUCTS,
-      icon: <AiOutlineProduct />,
-    },
-    {
-      label: 'Category',
-      path: ROUTERS.ADMIN.CATEGORIES,
-      icon: <MdCategory />,
-    },
-    {
-      label: 'Users',
-      path: ROUTERS.ADMIN.USERS,
-      icon: <CiUser />,
-    },
-  ]
-
+const HeaderAdmin = ({ collapsed, setCollapsed }) => {
   const { currentUser, setCurrentUser, setUserToken } = userStateContext();
   const handleLogout = (e) => {
     e.preventDefault();
@@ -50,7 +24,7 @@ const HeaderAdmin = () => {
 
   return (
     <>
-      <div className="container header__container">
+      {/* <div className="container header__container">
         <nav className="header__nav">
           {
             navItems?.map(({ label, path, icon }) => (
@@ -68,7 +42,24 @@ const HeaderAdmin = () => {
             <Link to={ROUTERS.ADMIN.LOGOUT} className="header__user__logout" onClick={handleLogout}>Logout</Link>
           </div>
         )}
-      </div>
+      </div> */}
+      <Header style={{ padding: 0 }}>
+        <div className="d-flex justify-content-between pr-4 align-items-center">
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: '16px',
+              width: 64,
+              height: 64,
+              color: 'white'
+            }}
+          />
+          <Link to={ROUTERS.ADMIN.LOGOUT} className="header__user__logout trans btn btn-primary" onClick={handleLogout}>Logout</Link>
+        </div>
+
+      </Header>
     </>
   );
 }

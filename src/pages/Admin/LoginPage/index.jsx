@@ -24,7 +24,7 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosClient.post(ROUTERS.ADMIN.LOGIN, form)
+    axiosClient.post(ROUTERS.USER.LOGIN, form)
       .then(res => {
         setCurrentUser(res.user)
         setUserToken(res.token)
