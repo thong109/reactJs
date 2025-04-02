@@ -11,12 +11,17 @@ import ProductsPage from "./pages/Users/ProductsPage";
 import ProductDetailPage from "./pages/Users/ProductDetailPage";
 import FontLoader from './utils/font.jsx';
 import ShoppingCard from "./pages/Users/ShoppingCard";
-import CheckoutPage from "./pages/Users/CheckoutPage/index.jsx";
-import LoginPage from "./pages/Admin/LoginPage/index.jsx";
-import OrdersPage from "./pages/Admin/OrdersPage/index.jsx";
-import ProductsAdPage from "./pages/Admin/ProductsAdPage/index.jsx";
-import DashboardPage from "./pages/Admin/DashboardPage/index.jsx";
+import CheckoutPage from "./pages/Users/CheckoutPage";
+import CategoriesPage from "./pages/Users/CategoriesPage";
+import LoginPage from "./pages/Admin/LoginPage";
+import OrdersPage from "./pages/Admin/OrdersPage";
+import ProductsAdPage from "./pages/Admin/ProductsAdPage";
+import DashboardPage from "./pages/Admin/DashboardPage";
 import { ContextProvider, userStateContext } from "./contexts/ContextProvider.jsx";
+import CategoryPage from "./pages/Admin/CategoryPage";
+import CategoryCreate from "./pages/Admin/CategoryPage/CategoryCreate";
+import ProductByCategory from "./pages/Users/CategoriesPage/ProductByCategory/index.jsx";
+import UsersPage from "./pages/Admin/UsersPage/index.jsx";
 
 const renderUserRoutes = () => {
   const userRoutes = [
@@ -44,20 +49,28 @@ const renderUserRoutes = () => {
       path: ROUTERS.USER.CHECKOUT,
       component: < CheckoutPage />
     },
+    {
+      path: ROUTERS.USER.CATEGORY,
+      component: < CategoriesPage />
+    },
+    {
+      path: ROUTERS.USER.CATEGORY_ID,
+      component: < ProductByCategory />
+    },
   ]
 
   return (
     <>
-    <FontLoader />
-    <MasterLayout>
-      <Routes>
-        {
-          userRoutes.map((item, key) => (
-            <Route key={key} path={item.path} element={item.component}/>
-          ))
-        }
-      </Routes>
-    </MasterLayout>
+      <FontLoader />
+      <MasterLayout>
+        <Routes>
+          {
+            userRoutes.map((item, key) => (
+              <Route key={key} path={item.path} element={item.component} />
+            ))
+          }
+        </Routes>
+      </MasterLayout>
     </>
   )
 }
@@ -85,6 +98,10 @@ const renderAdminRoutes = () => {
           <Route path={ROUTERS.ADMIN.ORDERS} element={<OrdersPage />} />
           <Route path={ROUTERS.ADMIN.DASHBOARD} element={<DashboardPage />} />
           <Route path={ROUTERS.ADMIN.PRODUCTS} element={<ProductsAdPage />} />
+          <Route path={ROUTERS.ADMIN.CATEGORIES} element={<CategoryPage />} />
+          <Route path={ROUTERS.ADMIN.CATEGORIES_CREATE} element={<CategoryCreate />} />
+          <Route path={ROUTERS.ADMIN.CATEGORY_ID} element={<CategoryCreate />} />
+          <Route path={ROUTERS.ADMIN.USERS} element={<UsersPage />} />
           <Route path="/*" element={<Navigate to={ROUTERS.ADMIN.DASHBOARD} />} />
         </Routes>
       </MasterAdminLayout>

@@ -3,28 +3,29 @@ import './Header.scss';
 import { ROUTERS } from '../../../../utils/router';
 import { generatePath, Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from '../../../../assets/Users/logo.png';
-import formatter from './../../../../utils/formatter.jsx';
+import axiosClient from '../../../../config/axios.jsx';
+import { formatter } from '../../../../utils/formatter.jsx';
 
-export const categories = [
-  'Fresh Meat',
-  'Vegetables',
-  'Fruit & Nut Gifts',
-  'Fresh Berries',
-  'Ocean Foods',
-  'Butter & Eggs',
-  'Fastfood',
-  'Fresh Onion',
-  'Papayaya & Crisps',
-  'Oatmeal',
-  'Fresh Bananas'
-]
-
+// export const categories = [
+//   'Fresh Meat',
+//   'Vegetables',
+//   'Fruit & Nut Gifts',
+//   'Fresh Berries',
+//   'Ocean Foods',
+//   'Butter & Eggs',
+//   'Fastfood',
+//   'Fresh Onion',
+//   'Papayaya & Crisps',
+//   'Oatmeal',
+//   'Fresh Bananas'
+// ]
 const Header = () => {
   const location = useLocation();
   const elementRef = useRef(null);
   const [showCategory, setShowCategory] = useState(false)
   const [isHome, setIsHome] = useState(location.pathname.length <= 1);
   const [isShowBanner, setIsShowBanner] = useState(isHome);
+  const [categories, setCategories] = useState([])
 
   const [menu, _] = useState([
     {
@@ -32,8 +33,8 @@ const Header = () => {
       path: ROUTERS.USER.HOME
     },
     {
-      name: 'Shop',
-      path: ROUTERS.USER.SHOP
+      name: 'Category',
+      path: ROUTERS.USER.CATEGORY
     },
     {
       name: 'Product',
@@ -42,15 +43,15 @@ const Header = () => {
       child: [
         {
           name: 'Meat',
-          path: generatePath(ROUTERS.USER.PRODUCT_ID, {id: 1})
+          path: generatePath(ROUTERS.USER.PRODUCT_ID, { id: 1 })
         },
         {
           name: 'Vegetable',
-          path: generatePath(ROUTERS.USER.PRODUCT_ID, {id: 1})
+          path: generatePath(ROUTERS.USER.PRODUCT_ID, { id: 1 })
         },
         {
           name: 'Fish',
-          path: generatePath(ROUTERS.USER.PRODUCT_ID, {id: 1})
+          path: generatePath(ROUTERS.USER.PRODUCT_ID, { id: 1 })
         }
       ]
     },
@@ -81,6 +82,16 @@ const Header = () => {
     setIsHome(isHome)
     setIsShowBanner(isHome)
   }, [location])
+
+  useEffect(() => {
+    axiosClient.get(ROUTERS.USER.GET_ALL_CATEGORY_NAME)
+      .then(res => {
+        setCategories(res.data)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }, [])
 
   return (
     <>
@@ -175,7 +186,7 @@ const Header = () => {
                 </div>
                 <ul className={showCategory ? 'show' : ''} ref={elementRef}>
                   {categories?.map((item, index) => (
-                    <li key={index}><Link to={ROUTERS.USER.PRODUCT} className='trans'>{item}</Link></li>
+                    <li key={index}><Link to={generatePath(ROUTERS.USER.CATEGORY_ID, { id: item.id })} className='trans'>{item.name}</Link></li>
                   ))}
                 </ul>
               </div>

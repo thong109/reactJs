@@ -5,18 +5,18 @@ import HeaderAdmin from '../HeaderAdmin';
 import { userStateContext } from '../../../../contexts/ContextProvider';
 // import Footer from '../Footer';
 
-const MasterAdminLayout = ({children}) => {
+const MasterAdminLayout = ({ children }) => {
   const location = useLocation();
   const isLoginPage = location.pathname.startsWith(ROUTERS.ADMIN.LOGIN);
   const { userToken } = userStateContext();
 
-  if(!userToken) {
+  if (!userToken) {
     return <Navigate to={ROUTERS.ADMIN.LOGIN} />;
   }
 
   return (
     <>
-      {!isLoginPage && <HeaderAdmin/>}
+      {!isLoginPage && <HeaderAdmin />}
       <main>
         <div className="container">
           {children}

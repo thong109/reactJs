@@ -5,4 +5,10 @@ const formatter = (number) => {
   }).format(number);
 }
 
-export default formatter;
+const formatDateLocale = (dateString, locale = 'en-GB') => {
+  const date = new Date(dateString);
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  return new Intl.DateTimeFormat(locale, options).format(date);
+}
+
+export { formatter, formatDateLocale };

@@ -2,7 +2,6 @@ import { memo, useState } from 'react';
 import Breadcrumb from '../Theme/Breadcrumb';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import formatter from '../../../utils/formatter';
 import "./ProductDetailPage.scss";
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -10,13 +9,14 @@ import 'swiper/css/thumbs';
 import { FreeMode, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Quantity from '../../../components/Quantity';
+import {formatter} from '../../../utils/formatter';
 
 const ProductDetailPage = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
     <>
-      <Breadcrumb name="Vegetable’s Package"/>
+      <Breadcrumb name="Vegetable’s Package" />
       <section className="product-details spad">
         <div className="container">
           <div className="row">
@@ -29,19 +29,19 @@ const ProductDetailPage = () => {
                   className="mySwiper2 product__details__pic__item"
                 >
                   <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" className='product__details__pic__item--large'/>
+                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" className='product__details__pic__item--large' />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" className='product__details__pic__item--large'/>
+                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" className='product__details__pic__item--large' />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" className='product__details__pic__item--large'/>
+                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" className='product__details__pic__item--large' />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" className='product__details__pic__item--large'/>
+                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" className='product__details__pic__item--large' />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-5.jpg" className='product__details__pic__item--large'/>
+                    <img src="https://swiperjs.com/demos/images/nature-5.jpg" className='product__details__pic__item--large' />
                   </SwiperSlide>
                 </Swiper>
                 <Swiper
@@ -86,7 +86,7 @@ const ProductDetailPage = () => {
                 <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                   vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                   quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
-                <Quantity hasAddToCart={true}/>
+                <Quantity hasAddToCart={true} />
                 <ul>
                   <li><b>Availability</b> <span>In Stock</span></li>
                   <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>

@@ -2,11 +2,12 @@ import { memo } from 'react';
 import { ROUTERS } from '../../../../utils/router';
 import { IoCart } from "react-icons/io5";
 import { AiOutlineProduct } from "react-icons/ai";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdCategory } from "react-icons/md";
 import { Link, NavLink } from 'react-router-dom';
 import './HeaderAdmin.scss'
 import { userStateContext } from '../../../../contexts/ContextProvider';
 import axiosClient from '../../../../config/axios';
+import { CiUser } from "react-icons/ci";
 
 const HeaderAdmin = () => {
   const navItems = [
@@ -25,16 +26,26 @@ const HeaderAdmin = () => {
       path: ROUTERS.ADMIN.PRODUCTS,
       icon: <AiOutlineProduct />,
     },
+    {
+      label: 'Category',
+      path: ROUTERS.ADMIN.CATEGORIES,
+      icon: <MdCategory />,
+    },
+    {
+      label: 'Users',
+      path: ROUTERS.ADMIN.USERS,
+      icon: <CiUser />,
+    },
   ]
 
   const { currentUser, setCurrentUser, setUserToken } = userStateContext();
   const handleLogout = (e) => {
     e.preventDefault();
-    axiosClient.post('/logout')
-    .then(res => {
-      setCurrentUser({})
-      setUserToken(null)
-    })
+    axiosClient.post(ROUTERS.ADMIN.LOGOUT)
+      .then(res => {
+        setCurrentUser({})
+        setUserToken(null)
+      })
   }
 
   return (
@@ -43,11 +54,11 @@ const HeaderAdmin = () => {
         <nav className="header__nav">
           {
             navItems?.map(({ label, path, icon }) => (
-              <NavLink key={label} to={path} className={`header__nav__item ${location.pathname.includes(path) ? 'header__nav__item--active': ''}`}>{icon} {label}</NavLink>
+              <NavLink key={label} to={path} className={`header__nav__item ${location.pathname.includes(path) ? 'header__nav__item--active' : ''}`}>{icon} {label}</NavLink>
             ))
           }
         </nav>
-        { currentUser && (
+        {currentUser && (
           <div className="header__user">
             <img src={currentUser.avatar} alt={currentUser.name} className="header__user__avatar" />
             <div className="header__user__info">

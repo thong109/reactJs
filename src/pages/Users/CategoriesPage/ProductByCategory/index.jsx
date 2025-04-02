@@ -1,14 +1,17 @@
-import { memo } from 'react';
-import Breadcrumb from './../Theme/Breadcrumb';
-// import { categories } from '../Theme/Header';
-import { ROUTERS } from '../../../utils/router';
+import { memo, useEffect, useState } from 'react';
+import Breadcrumb from '../../Theme/Breadcrumb';
+import { ROUTERS } from '../../../../utils/router';
 import { generatePath, Link } from 'react-router-dom';
-import image1 from '../../../assets/Users/product-1.jpg'
-import image2 from '../../../assets/Users/product-2.jpg'
-import image3 from '../../../assets/Users/product-3.jpg'
-import image4 from '../../../assets/Users/product-4.jpg'
+import image1 from '../../../../assets/Users/product-1.jpg'
+import image2 from '../../../../assets/Users/product-2.jpg'
+import image3 from '../../../../assets/Users/product-3.jpg'
+import image4 from '../../../../assets/Users/product-4.jpg'
+import { useParams } from "react-router-dom";
+import axiosClient from '../../../../config/axios';
 
-const ProductsPage = () => {
+const CategoriesPage = () => {
+  const [products, setProducts] = useState([])
+
   const sorts = [
     "Default",
     "Low to High",
@@ -17,9 +20,21 @@ const ProductsPage = () => {
     "Oldest"
   ]
 
+  const { id } = useParams()
+
+  useEffect(() => {
+    axiosClient.get(generatePath(ROUTERS.USER.CATEGORY_ID, { id: id }))
+      .then(res => {
+        setProducts(res.data)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }, [])
+
   return (
     <div>
-      <Breadcrumb name="Product" />
+      <Breadcrumb name="Category" />
       <section className="product spad">
         <div className="container">
           <div className="row">
@@ -406,4 +421,4 @@ const ProductsPage = () => {
   );
 }
 
-export default memo(ProductsPage);
+export default memo(CategoriesPage);

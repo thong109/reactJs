@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
 import Breadcrumb from '../Theme/Breadcrumb'
 import Quantity from '../../../components/Quantity'
-import formatter from '../../../utils/formatter'
 import { IoMdClose } from "react-icons/io";
+import { formatter } from '../../../utils/formatter';
 
 const ShoppingCard = () => {
   return (
     <>
-      <Breadcrumb name="Shopping Cart"/>
+      <Breadcrumb name="Shopping Cart" />
       <section className="shopping-cart spad">
         <div className="container">
           <div className="row">
@@ -33,7 +33,7 @@ const ShoppingCard = () => {
                         {formatter(200000)}
                       </td>
                       <td className="shopping__cart__quantity">
-                        <Quantity hasAddToCart={false}/>
+                        <Quantity hasAddToCart={false} />
                       </td>
                       <td className="shopping__cart__total">
                         {formatter(200000)}
@@ -51,7 +51,7 @@ const ShoppingCard = () => {
                         {formatter(200000)}
                       </td>
                       <td className="shopping__cart__quantity">
-                        <Quantity hasAddToCart={false}/>
+                        <Quantity hasAddToCart={false} />
                       </td>
                       <td className="shopping__cart__total">
                         {formatter(200000)}
@@ -69,7 +69,7 @@ const ShoppingCard = () => {
                         {formatter(200000)}
                       </td>
                       <td className="shopping__cart__quantity">
-                        <Quantity hasAddToCart={false}/>
+                        <Quantity hasAddToCart={false} />
                       </td>
                       <td className="shopping__cart__total">
                         {formatter(200000)}
@@ -96,7 +96,7 @@ const ShoppingCard = () => {
                 <div className="shopping__discount">
                   <h5>Discount Codes</h5>
                   <form action="#">
-                    <input type="text" placeholder="Enter your coupon code"/>
+                    <input type="text" placeholder="Enter your coupon code" />
                     <button type="submit" className="site-btn">APPLY COUPON</button>
                   </form>
                 </div>

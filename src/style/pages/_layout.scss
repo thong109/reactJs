@@ -57,9 +57,124 @@ svg {
   width: 100%;
 }
 
+th,
+td {
+  text-align: center !important;
+}
+
+.input-common {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  min-width: 250px;
+}
+
+// .common-controller
+
+.w-12 {
+  width: 40px;
+  height: 40px;
+}
+
+.icon-photo {
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.button-image {
+  height: 40px;
+
+  input {
+    display: none;
+  }
+}
+
 .object-common {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.category__dropdown .site-btn {
+  display: flex;
+  align-items: center;
+}
+
+.category {
+  &__dropdown {
+    position: relative;
+    min-width: 150px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__dropdown-arrow {
+    margin-left: 5px;
+    font-size: 10px;
+    position: relative;
+    top: 1px;
+    transition: transform 0.3s ease, top 0.3s ease;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__dropdown-button {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    transition: background-color 0.3s;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: #e1e1e1;
+
+      .category__dropdown-arrow {
+        transform: rotate(180deg);
+        top: 3px;
+      }
+    }
+  }
+
+  &__dropdown__menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    min-width: 150px;
+    background-color: #fff;
+
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+  &__dropdown-item {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #e1e1e1;
+    }
+
+    &--danger {
+      color: #ff0000;
+    }
+  }
 }
